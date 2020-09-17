@@ -4,6 +4,7 @@
 #include "ChooseDlg.h"
 #include "InfoDlg.h"
 #include "UNOgameDlg.h"
+#include "resource.h";
 
 void CUNOGameFlow::StartGame(int firstPlayerIndex)
 {
@@ -129,8 +130,8 @@ void CUNOGameFlow::StartRound(int firstPlayerIndex)
 	IsDealingRunning = true;
 
 	CInfoDlg dlgInfo;
-	CString info = _T("Player  ") + CurrentPlayer->GetName() + _T("  will start the round!");
-	dlgInfo.SetInfo(_T("First Round..."), info);
+	CString info = CString(MAKEINTRESOURCE(IDS_PLAYER_SPACE)) + CurrentPlayer->GetName() + CString(MAKEINTRESOURCE(IDS_SPACE_START_ROUND));
+	dlgInfo.SetInfo(CString(MAKEINTRESOURCE(IDS_FIRST_ROUND)), info);
 	dlgInfo.DoModal();
 
 	PlayerWithVisibleCards = Players->GetAt(Players->FindIndex(firstPlayerIndex));
@@ -185,9 +186,9 @@ void CUNOGameFlow::ThrowCard(int cardDeckIndex)
 		if (CurrentPlayer->Deck()->GetCardsCount() == 1)
 		{
 			CChooseDlg clg;
-			clg.SetText(_T("Call UNO!?"));
-			clg.SetOkButton(_T("Yes"));
-			clg.SetCancelButton(_T("NO"));
+			clg.SetText(CString(MAKEINTRESOURCE(IDS_CALL_UNO)));
+			clg.SetOkButton(CString(MAKEINTRESOURCE(IDS_YES)));
+			clg.SetCancelButton(CString(MAKEINTRESOURCE(IDS_NO)));
 			if (clg.DoModal() == IDOK)
 			{
 				CurrentPlayer->CallUNO();
@@ -227,17 +228,17 @@ void CUNOGameFlow::ThrowCard(int cardDeckIndex)
 			PlayerWithVisibleCards = NULL;
 
 			CInfoDlg dlgInfo0;
-			CString info = _T("Call player  ") + nextPlayer->GetName() + _T("  for the challenge!");
-			dlgInfo0.SetInfo(_T("Next player..."), info);
+			CString info = CString(MAKEINTRESOURCE(IDS_CALL_PLAYER_SPACE)) + nextPlayer->GetName() + CString(MAKEINTRESOURCE(IDS_SPACE_CHALLANGE));
+			dlgInfo0.SetInfo(CString(MAKEINTRESOURCE(IDS_NEXT_PLAYER)), info);
 			dlgInfo0.DoModal();
 
 			MainDialog->RefreshDialog(TRUE);
 
 			CChooseDlg clg;
-			info = _T("Player  ") + nextPlayer->GetName() + _T(", do you want to challenge Draw Four Wild card?");
+			info = CString(MAKEINTRESOURCE(IDS_PLAYER_SPACE)) + nextPlayer->GetName() + CString(MAKEINTRESOURCE(IDS_WANT_CHALLANGE));
 			clg.SetText(info);
-			clg.SetOkButton(_T("Yes"));
-			clg.SetCancelButton(_T("NO"));
+			clg.SetOkButton(CString(MAKEINTRESOURCE(IDS_YES)));
+			clg.SetCancelButton(CString(MAKEINTRESOURCE(IDS_NO)));
 			if (clg.DoModal() == IDOK)
 			{
 				ChallangeDrawFourMode = true;
@@ -249,17 +250,17 @@ void CUNOGameFlow::ThrowCard(int cardDeckIndex)
 				bool result = CheckChallengeCards(CurrentPlayer, pileCard, pileColor);
 
 				CInfoDlg dlgInfoChallengeResult;
-				CString info = _T("Challenge ");
+				CString info = CString(MAKEINTRESOURCE(IDS_CHALLANGE));
 				if (!result)
 				{
-					info += _T("FAILED!");
+					info += CString(MAKEINTRESOURCE(IDS_FAILED));
 				}
 				else
 				{
-					info += _T("SUCCESS!");
+					info += CString(MAKEINTRESOURCE(IDS_SUCCESS));
 				}
 				info += _T("!");
-				dlgInfoChallengeResult.SetInfo(_T("Challenge Result..."), info);
+				dlgInfoChallengeResult.SetInfo(CString(MAKEINTRESOURCE(IDS_CHALLANGE_RESULT)), info);
 				dlgInfoChallengeResult.DoModal();
 
 				PlayerWithVisibleCards = NULL;
@@ -282,8 +283,8 @@ void CUNOGameFlow::ThrowCard(int cardDeckIndex)
 					MainDialog->UpdatePlayerList();
 
 					CInfoDlg dlgInfo1;
-					info = _T("Please call player  ") + CurrentPlayer->GetName() + _T(" !");
-					dlgInfo1.SetInfo(_T("Next player..."), info);
+					info = CString(MAKEINTRESOURCE(IDS_CALL_PLAYER_SPACE)) + CurrentPlayer->GetName() + _T(" !");
+					dlgInfo1.SetInfo(CString(MAKEINTRESOURCE(IDS_NEXT_PLAYER)), info);
 					dlgInfo1.DoModal();
 				}
 				else
@@ -316,8 +317,8 @@ void CUNOGameFlow::ThrowCard(int cardDeckIndex)
 				MainDialog->UpdatePlayerList();
 
 				CInfoDlg dlgInfo2;
-				info = _T("Please call player  ") + CurrentPlayer->GetName() + _T(" !");
-				dlgInfo2.SetInfo(_T("Next player..."), info);
+				info = CString(MAKEINTRESOURCE(IDS_CALL_PLAYER_SPACE)) + CurrentPlayer->GetName() + _T(" !");
+				dlgInfo2.SetInfo(CString(MAKEINTRESOURCE(IDS_NEXT_PLAYER)), info);
 				dlgInfo2.DoModal();
 			}
 			break;
@@ -335,8 +336,8 @@ void CUNOGameFlow::ThrowCard(int cardDeckIndex)
 				MainDialog->UpdatePlayerList();
 
 				CInfoDlg dlgInfo3;
-				CString info = _T("Please call player  ") + CurrentPlayer->GetName() + _T(" !");
-				dlgInfo3.SetInfo(_T("Next player..."), info);
+				CString info = CString(MAKEINTRESOURCE(IDS_CALL_PLAYER_SPACE)) + CurrentPlayer->GetName() + _T(" !");
+				dlgInfo3.SetInfo(CString(MAKEINTRESOURCE(IDS_NEXT_PLAYER)), info);
 				dlgInfo3.DoModal();
 			}
 			break;
@@ -366,8 +367,8 @@ void CUNOGameFlow::ThrowCard(int cardDeckIndex)
 				MainDialog->UpdatePlayerList();
 
 				CInfoDlg dlgInfo4;
-				CString info = _T("Please call player  ") + CurrentPlayer->GetName() + _T(" !");
-				dlgInfo4.SetInfo(_T("Next player..."), info);
+				CString info = CString(MAKEINTRESOURCE(IDS_CALL_PLAYER_SPACE)) + CurrentPlayer->GetName() + _T(" !");
+				dlgInfo4.SetInfo(CString(MAKEINTRESOURCE(IDS_NEXT_PLAYER)), info);
 				dlgInfo4.DoModal();
 			}
 			break;
@@ -393,8 +394,8 @@ void CUNOGameFlow::ThrowCard(int cardDeckIndex)
 				MainDialog->UpdatePlayerList();
 
 				CInfoDlg dlgInfo5;
-				CString info = _T("Please call player  ") + CurrentPlayer->GetName() + _T(" !");
-				dlgInfo5.SetInfo(_T("Next player..."), info);
+				CString info = CString(MAKEINTRESOURCE(IDS_CALL_PLAYER_SPACE)) + CurrentPlayer->GetName() + _T(" !");
+				dlgInfo5.SetInfo(CString(MAKEINTRESOURCE(IDS_NEXT_PLAYER)), info);
 				dlgInfo5.DoModal();
 			}
 			break;
@@ -410,8 +411,8 @@ void CUNOGameFlow::ThrowCard(int cardDeckIndex)
 			MainDialog->UpdatePlayerList();
 
 			CInfoDlg dlgInfo6;
-			CString info = _T("Please call player  ") + CurrentPlayer->GetName() + _T(" !");
-			dlgInfo6.SetInfo(_T("Next player..."), info);
+			CString info = CString(MAKEINTRESOURCE(IDS_CALL_PLAYER_SPACE)) + CurrentPlayer->GetName() + _T(" !");
+			dlgInfo6.SetInfo(CString(MAKEINTRESOURCE(IDS_NEXT_PLAYER)), info);
 			dlgInfo6.DoModal();
 			break;
 		}
@@ -426,8 +427,8 @@ void CUNOGameFlow::ThrowCard(int cardDeckIndex)
 			MainDialog->UpdatePlayerList();
 
 			CInfoDlg dlgInfo7;
-			CString info = _T("Please call player  ") + CurrentPlayer->GetName() + _T(" !");
-			dlgInfo7.SetInfo(_T("Next player..."), info);
+			CString info = CString(MAKEINTRESOURCE(IDS_CALL_PLAYER_SPACE)) + CurrentPlayer->GetName() + _T(" !");
+			dlgInfo7.SetInfo(CString(MAKEINTRESOURCE(IDS_NEXT_PLAYER)), info);
 			dlgInfo7.DoModal();		
 		}
 	}
@@ -484,8 +485,8 @@ void CUNOGameFlow::RoundEnd()
 
 	if (roundWinner->GetPoints() >= 500)
 	{
-		CString info = _T("Game Winner is  ") + roundWinner->GetName() + _T(" ! Congratulations!");
-		dlgInfo.SetInfo(_T("Winner is..."), info);
+		CString info = CString(MAKEINTRESOURCE(IDS_GAME_WINNER)) + roundWinner->GetName() + CString(MAKEINTRESOURCE(IDS_CONGRATS));
+		dlgInfo.SetInfo(CString(MAKEINTRESOURCE(IDS_WINNER_IS)), info);
 		dlgInfo.SetWinnerFlag(true);
 		dlgInfo.DoModal();
 		dlgInfo.SetWinnerFlag(false);
@@ -495,8 +496,8 @@ void CUNOGameFlow::RoundEnd()
 	}
 	else
 	{
-		CString info = _T("Round Winner is  ") + roundWinner->GetName() + _T(" !");
-		dlgInfo.SetInfo(_T("Winner is..."), info);
+		CString info = CString(MAKEINTRESOURCE(IDS_ROUND_WINNER)) + roundWinner->GetName() + _T(" !");
+		dlgInfo.SetInfo(CString(MAKEINTRESOURCE(IDS_WINNER_IS)), info);
 		dlgInfo.SetRoundWinnerFlag(true);
 		dlgInfo.DoModal();
 		dlgInfo.SetRoundWinnerFlag(false);
@@ -609,8 +610,8 @@ void CUNOGameFlow::GoNext()
 	Next();
 
 	CInfoDlg dlgInfo;
-	CString info = _T("Please call player  ") + CurrentPlayer->GetName() + _T(" !");
-	dlgInfo.SetInfo(_T("Next player..."), info);
+	CString info = CString(MAKEINTRESOURCE(IDS_CALL_PLAYER_SPACE)) + CurrentPlayer->GetName() + _T(" !");
+	dlgInfo.SetInfo(CString(MAKEINTRESOURCE(IDS_NEXT_PLAYER)), info);
 	dlgInfo.DoModal();
 
 	PlayerWithVisibleCards = CurrentPlayer;

@@ -70,7 +70,7 @@ void CAddPlayersDlg::OnBnClickedAddChange()
 	if (DoesNameExist(name))
 	{
 		CInfoDlg dlgInfo;
-		dlgInfo.SetInfo(_T("Info"), _T("Player name already exists on the list!"));
+		dlgInfo.SetInfo(CString(MAKEINTRESOURCE(IDS_INFO)), CString(MAKEINTRESOURCE(IDS_PLAYER_NAME_EXISTS)));
 		dlgInfo.DoModal();
 		return;
 	}
@@ -212,7 +212,7 @@ void CAddPlayersDlg::SetControlsState()
 	if (!IsChangeMode)
 	{
 		PlayersListBox.EnableWindow(TRUE);
-		AddChangeButton.SetWindowTextW(_T("Add"));
+		AddChangeButton.SetWindowTextW(CString(MAKEINTRESOURCE(IDS_ADD)));
 		AddChangeButton.EnableWindow(!maxCount);
 		ClearButton.ShowWindow(SW_HIDE);
 		DeleteButton.EnableWindow(slected);
@@ -223,7 +223,7 @@ void CAddPlayersDlg::SetControlsState()
 	else
 	{
 		PlayersListBox.EnableWindow(FALSE);
-		AddChangeButton.SetWindowTextW(_T("Change"));
+		AddChangeButton.SetWindowTextW(CString(MAKEINTRESOURCE(IDS_CHANGE)));
 		AddChangeButton.EnableWindow(TRUE);
 		ClearButton.ShowWindow(SW_SHOW);
 		DeleteButton.EnableWindow(FALSE);

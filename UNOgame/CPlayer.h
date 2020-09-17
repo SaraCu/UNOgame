@@ -1,6 +1,7 @@
 #pragma once
 #include "CCard.h"
 #include "CDeck.h"
+#include "resource.h";
 
 class CPlayer
 {
@@ -41,9 +42,9 @@ public:
 		strPt.Format(_T("%d"), Points);
 		CString strCrds;
 		strCrds.Format(_T("%d"), pDeck->GetCardsCount());
-		CString uno = _T("");
-		if (UNO) uno = _T(", UNO!");
-		return _T(" ")+ Name + _T(", Pts: ") + strPt + _T(", Cards: ") + strCrds + _T("") + uno;
+		CString uno = UNO ? CString(MAKEINTRESOURCE(IDS_COMMA_UNO)) : _T("");
+		return _T(" ")+ Name + CString(MAKEINTRESOURCE(IDS_COMMA_PTS)) + strPt 
+			+ CString(MAKEINTRESOURCE(IDS_COMMA_CARDS)) + strCrds + _T("") + uno;
 	};
 
 	int GetPoints() { return Points; }
@@ -56,7 +57,7 @@ public:
 	void ResetUNOCall() { UNO = false; }
 };
 
-#define PlayerList CList<CPlayer*, CPlayer*>
+typedef  CList<CPlayer*, CPlayer*> PlayerList;
 
 PlayerList* ClonePlayerList(PlayerList* players);
 

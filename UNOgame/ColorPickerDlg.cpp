@@ -46,8 +46,8 @@ BOOL CColorPickerDlg::OnInitDialog()
 
 	this->SetBackgroundColor(RGB(0, 0, 0));
 
-	CString val = _T("Player  ")+ Name;
-	val += _T("  must choose a color:");
+	CString val = CString(MAKEINTRESOURCE(IDS_PLAYER_SPACE)) + Name;
+	val += CString(MAKEINTRESOURCE(IDS_SPACE_CHOOSE_COLOR));
 	NameStatic.SetWindowTextW(val);
 
 	return TRUE;  // return TRUE unless you set the focus to a control

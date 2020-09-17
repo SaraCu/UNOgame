@@ -93,4 +93,4 @@ public:
 	int GetPoints() { return Points; }
 };
 
-#define CardList CList<CCard*, CCard*>
+typedef CList<CCard*, CCard*> CardList;

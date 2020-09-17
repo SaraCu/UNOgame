@@ -180,7 +180,7 @@ void CUNOgameDlg::AdjustContolsLayout()
 	DrawButton.GetClientRect(&ButtonRect);
 	PlayersListBox.GetClientRect(&PlayersListBoxRect);
 	
-	PlayersListBox.MoveWindow(10, 0, 200, 140);
+	PlayersListBox.MoveWindow(10, 0, 300, 140);
 
 	DrawButton.MoveWindow((
 		ClientRect.Width() - ButtonRect.Width()) / 2 - 5 - 25,
@@ -215,7 +215,7 @@ void CUNOgameDlg::AdjustContolsLayout()
 	if (player != NULL)
 	{
 		CString out = player->GetName();
-		out = _T(" ") + out + _T(" 's cards ");
+		out = _T(" ") + out + CString(MAKEINTRESOURCE(IDS_S_CARDS));
 		StaticPlayerText.SetWindowTextW(out);
 	}
 	else 
